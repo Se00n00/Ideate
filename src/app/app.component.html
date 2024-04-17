@@ -1,0 +1,22 @@
+<div class="header">
+  <span class="change">
+    <button type="button" [class]="ideate_buttons" id="change_buttons1" (click)="Ideate()">Ideate</button>
+    <button type="button" [class]="scheduled_buttons" id="change_buttons2" (click)="Scheduled()">Scheduled</button>
+  </span>
+  <div class="filter_type">
+    <button type="button" class="filter_type_buttons">Environment</button>
+    <button type="button" class="filter_type_buttons">Environment</button>
+    <button type="button" class="filter_type_buttons">Environment</button>
+    <button type="button" class="filter_type_buttons">Environment</button>
+    <button type="button" class="filter_type_buttons">Environment</button>
+    <button type="button" class="filter_type_buttons">Environment</button>
+  </div>
+  <div class="create_list">
+    <button type="button" (click)="initiate_new()" id="CreateView">Initate a new Idea</button>
+  </div>
+</div>
+
+<div class="view">
+  <div class="Ideate" *ngIf="Ideas"><app-ideas></app-ideas></div>
+  <div class="Ideate" *ngIf="Schedule"><app-schedules></app-schedules></div>
+</div>

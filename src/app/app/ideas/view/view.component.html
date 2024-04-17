@@ -1,0 +1,179 @@
+
+<div class="view_all" *ngIf="!editable_window">
+    <div class="view_overviews">
+        <div class="view_overviews_image">
+            <img src="{{image_url}}" alt="" id="view_image">
+        </div>
+    </div>
+    <div class="view_others">
+        <div class="view_others_title">{{Title}}</div>
+        <div class="view_others_links">
+            <button type="button" class="links" *ngFor="let link in links"><a href="{{link.href}}">{{link.name}}</a></button>
+        </div>
+        <div class="view_others_description">
+            {{Description}}
+        </div>
+        <!-- <input type="text" name="" id="" [(ngModel)]="username">
+        <p>{{username}}</p> -->
+        
+        <div class="view_others_databases">
+            
+            <!-- <div class="collections">
+                <button type="button">Collection 1</button>
+                <button type="button">Collection 2</button>
+                <button type="button">Collection 3</button>
+            </div> -->
+            <button type="button" (click)="view_files()" id="View_files_buttons">{{view}}</button>
+            <button type="button" (click)="start_edit()" *ngIf="view_edit">E</button>
+        </div>
+        <app-files *ngIf="viewFiles"></app-files>
+    </div>
+</div>
+
+
+
+
+
+<!-- Edit Idea -->
+<div class="editIdea" *ngIf="editable_window">
+
+
+    <!--EditIdea_header-->
+    <div class="editIdea_header">
+        <div class="editIdea_databaseName">
+            <div class="databaseLogo">{{DatbaseName_first_Letter}}</div>
+            <div class="databaseName">{{DatbaseName}}</div>
+            <!--Add Idea Name-->
+        </div>
+        <!-- <input type="text" name="" id="" placeholder="Search"> -->
+        <button type="button" class="editIdea_delete" (click)="delete_Idea()"><span class="material-symbols-outlined">
+                delete
+                </span>Delete Idea</button>
+        <!-- <button type="button" (click)="end_edit()">X</button> -->
+    </div>
+
+
+
+    <!--editIdea Body-->
+    <div class="editIdea_body">
+        <div class="editIdea_asideMenu">
+            <div class="editIdea_ideaDetails" (click)="show_ideaDetails()"><span class="material-symbols-outlined">
+                lightbulb
+                </span>IdeaDetails</div>
+            <div class="editIdea_databseSecurity" (click)="show_databaseSecurity()"><span class="material-symbols-outlined">
+                vpn_key
+                </span>Manage Access</div>
+            <div class="editIdea_links" (click)="show_links()"><span class="material-symbols-outlined">
+                link
+                </span>Links & Info</div>
+            <div class="editIdea_files" (click)="show_files()"><span class="material-symbols-outlined">
+                home_storage
+                </span>Manage Files</div>
+        </div>
+    
+    
+        <!--EditIdea Main Content-->
+        <div class="editIdea_mainContent">
+            <!--Main Content : Idea Deatils-->
+            <div class="editIdea_mainContent_ideaDetails" *ngIf="bool_ideaDetails">
+                <p class="mainContent_heading">Manage Idea Details</p>
+                <div class="ideaDetails_title">
+                    <p class="mainContent_heading_title">Change Idea Title</p>
+                    <input type="text" name="" id="ideaDetails_title_text" [(ngModel)]="new_ideaTitle" placeholder="Enter New Idea Title">
+                </div>
+                <div class="ideaDetails_Description">
+                    <p class="mainContent_heading_title">Change Idea Description</p>
+                    <!-- <input type="text" name="" id="ideaDetails_title_text"> -->
+                    <textarea name="" id="ideaDetails_Description_text" cols="30" rows="10" [(ngModel)]="new_description" placeholder="Enter New Idea Description"></textarea>
+                </div>
+                <div class="ideaDetails_image">
+                    <p class="mainContent_heading_title">Change Idea View Image</p>
+                    <img src="" alt="" class="ideaDetails_image_show" [src]="new_viewImageSrc">
+                    <!-- <div class="ideaDetails_image_show" ></div> -->
+                    <input type="file" name="" id="" accept="image/*" (change)="onImageSelected($event)">
+                </div>
+                <div class="mainContent_save_cancel">
+                    <button type="button" (click)="onApply_ideaDetails()">Apply</button>
+                    <button type="button" (click)="end_edit()">Cancel</button>
+                </div>
+            </div>
+    
+    
+            <!--Main Content : DataSecurity-->
+            <div class="editIdea_mainContent_databseSecurity" *ngIf="bool_databaseSecurity">
+                <p class="mainContent_heading">Manage Access of Data among Shared</p>
+                <p>Comming Soon</p>
+                <div class="mainContent_save_cancel">
+                    <button type="button">Apply</button>
+                    <button type="button" (click)="end_edit()">Cancel</button>
+                </div>
+            </div>
+    
+    
+    
+            <!--Main Content : Links-->
+            <div class="editIdea_mainContent_links" *ngIf="bool_links">
+                <p class="mainContent_heading">Manage Associated Links</p>
+                <div class="External_links">
+                    <p class="mainContent_heading_title">Add External releated Links</p>
+                    <div class="links">
+                        <div class="link_image">
+                            <img src="" alt="">
+                            <input type="file" name="" id="">
+                        </div>
+                        <input type="text" name="" id="" placeholder="Enter Text to appear">
+                        <input type="text" name="" id="" placeholder="Enter Link Realted to it">
+                    </div>
+                </div>
+                <div class="Person_links">
+                    <p class="mainContent_heading_title">Add Person Links</p>
+                    <div class="links">
+                        <div class="link_image">
+                            <img src="" alt="">
+                            <input type="file" name="" id="">
+                        </div>
+                        <input type="text" name="" id="" placeholder="Enter Text to appear">
+                        <input type="text" name="" id="" placeholder="Enter Link Realted to it">
+                    </div>
+                </div>
+                <div class="mainContent_save_cancel">
+                    <button type="button">Apply</button>
+                    <button type="button" (click)="end_edit()">Cancel</button>
+                </div>
+            </div>
+    
+    
+    
+            <!--Main Content : Files-->
+            <div class="editIdea_mainContent_files" *ngIf="bool_files">
+                <p class="mainContent_heading">Manage Stored Files</p>
+                <!-- <p>Comming Soon</p> -->
+                <div class="inputFiles">
+                    <div class="available_inputFiles" *ngFor="let files of Files">
+                        <input type="text" name="" id="" placeholder="Enter Text to Appear" value="{{files.Name}}">
+                        <!-- <input type="text" name="" id="" placeholder="Enter Extension of File">  -->
+                        <button type="button">Delete</button>
+                    </div>
+                    <div class="new_inputFiles">
+                        <input type="text" name="" id="" placeholder="Enter Text to Appear">
+                        <input type="text" name="" id="" placeholder="Enter Extension of File">
+                        <input type="file" name="" id="">
+                    </div>
+                    
+                </div>
+                <div class="mainContent_save_cancel">
+                    <button type="button">Apply</button>
+                    <button type="button" (click)="end_edit()">Cancel</button>
+                </div>
+            </div>
+    
+    
+            
+        </div>
+    </div>
+    <!--EditIdea Aside Menu-->
+    
+</div>
+
+<app-comments></app-comments>
+

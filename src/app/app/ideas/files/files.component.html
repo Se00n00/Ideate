@@ -1,0 +1,16 @@
+<div class="files_all">
+    <button type="button" class="eachfiles" *ngFor="let docs of documents" (click)="open_document(docs)">
+        <span class="eachfiles_images">
+            <img [src]="file_type_image" alt="document">
+        </span>
+        <span class="eachfiles_text">{{docs.document_name}}</span>
+    </button> 
+</div>
+
+
+<!-- file-handler.component.html -->
+<!-- 
+<div>
+    <button (click)="openFileInDesktop('../../')">Open File from Database</button>
+  </div>
+   -->

@@ -1,0 +1,52 @@
+<div class="container">
+
+    <p>Comming Soon</p>
+    <div class="idea-list">
+      <h2>Idea Items</h2>
+      <div class="idea-list-container">
+        <div
+          *ngFor="let item of ideaItems; let i = index"
+          (dragover)="onDragOver($event, i)"
+          (drop)="onDrop($event, i)"
+          (dragstart)="onDragStart($event, i)"
+          draggable="true"
+          class="idea-list-item"
+        >
+          {{ item.name }}
+        </div>
+      </div>
+    </div>
+  
+    <div class="calendar">
+      <h2>Calendar</h2>
+      <table class="calendar-table">
+        <thead>
+          <tr>
+            <th *ngFor="let day of days">{{ day }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let week of weeks">
+            <td
+              *ngFor="let day of days; let i = index"
+              (dragover)="onDragOver($event, i)"
+              (drop)="onDrop($event, i)"
+              class="calendar-cell"
+            >
+              <div
+                *ngFor="let item of calendarItems[week][day]"
+                class="calendar-item"
+              >
+                {{ item.name }}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="gantt-chart">
+    <h2>Gantt Chart</h2>
+    <!-- Gantt chart implementation goes here -->
+  </div>

@@ -1,0 +1,34 @@
+<div class="comments" *ngIf="not_create_comment_list">
+    <button type="button" id="addpoint" (click)="show_create_list()">Add a point to Your Idea</button>
+</div>
+<div class="add_comments" *ngIf="create_comment_list">
+    <textarea cols="30" rows="10" id="textarea" placeholder="Enter Text here" [(ngModel)]="comment"></textarea>
+    <!-- <p>{{comment}}</p> -->
+    <div class="comment_image_and_create_list">
+        <div class="input_image">
+            <button type="button" class="input_image_button">
+                <img [src]="image_source" id="input_image" >
+            </button>
+            
+        </div>
+        <div class="comments_buttons">
+            <button type="button" (click)="add_comments()" class="add_comments_buttons">A</button>
+            <input type="file" accept="image/*" id="accept_image" (change)="onFileSelected($event)">
+            <button type="button" (click)="dont_show_creation()" class="add_comments_buttons">X</button>
+        </div>
+        
+    </div>
+</div>
+<div class="showed">
+    <div class="comments_crousel">
+        <div class="showed_comments" *ngFor="let items of comments;">
+            <!-- *ngIf="currentIndex !== comments.indexOf(items)" -->
+            <p class="showed_comments_text" >{{items.text}}</p>
+            <img src="{{items.image}}" height="150px" class="showed_comments_image" >
+        </div>
+    </div>
+    <div class="showed_buttons" >
+        <button type="button" class="crousel_buttons_button" (click)="up_crousel()">U</button>
+        <button type="button" class="crousel_buttons_button" (click)="down_crousel()">D</button>
+    </div>
+</div>

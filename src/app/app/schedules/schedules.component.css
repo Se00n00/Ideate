@@ -1,0 +1,45 @@
+p{
+    font-size: xx-large;
+    color: #000000;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    /* background-color: black; */
+  }
+  
+.idea-list,
+  .calendar {
+    flex-basis: 45%;
+  }
+  
+.idea-list-container,
+  .calendar-table {
+    border: 1px solid #000000;
+    padding: 10px;
+  }
+  
+  .idea-list-item,
+  .calendar-item {
+    background-color: #000000;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: move;
+  }
+  
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .calendar-table th,
+  .calendar-table td {
+    border: 1px solid #161616;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .gantt-chart {
+    margin-top: 20px;
+  }
