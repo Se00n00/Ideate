@@ -1,7 +1,15 @@
 <div class="header">
   <span class="change">
-    <button type="button" [class]="ideate_buttons" id="change_buttons1" (click)="Ideate()">Ideate</button>
-    <button type="button" [class]="scheduled_buttons" id="change_buttons2" (click)="Scheduled()">Scheduled</button>
+    <button type="button" [class]="ideate_buttons" id="change_buttons1" (click)="Ideate()">
+      <span class="material-symbols-outlined">
+        lightbulb
+      </span>
+    </button>
+    <button type="button" [class]="scheduled_buttons" id="change_buttons2" (click)="Scheduled()">
+      <span class="material-symbols-outlined">
+        wysiwyg
+      </span>
+    </button>
   </span>
   <div class="filter_type">
     <button type="button" class="filter_type_buttons">Environment</button>
@@ -20,3 +28,43 @@
   <div class="Ideate" *ngIf="Ideas"><app-ideas></app-ideas></div>
   <div class="Ideate" *ngIf="Schedule"><app-schedules></app-schedules></div>
 </div>
+
+
+<!-- <div class="others_whole" *ngIf="hide_others">
+  <div class="atStarting">
+    <div class="atStarting_upper">
+      <img src="./assets/flowers.jpg" alt="a Img" srcset="" id="atStarting_upper_image">
+    </div>
+    <div class="atStarting_lower">
+      <div class="atStarting_lower_left">
+        New Ideas
+        <div class="atStarting_lower_left_files">
+          <span class="material-symbols-outlined">
+            edit_square
+            </span>
+          <span class="atStarting_text">Create a New Idea</span>
+        </div>
+      </div>
+      <div class="atStarting_lower_right">
+        Getting Started
+        <div class="atStarting_links">
+          <span class="material-symbols-outlined">
+            language
+            </span>
+          <span class="atStarting_text">Manual</span>
+        </div>
+        <div class="atStarting_links">
+          <span class="material-symbols-outlined">
+            language
+            </span>
+          <span class="atStarting_text">Official Website</span>
+        </div>
+      </div>
+    </div>
+    <div class="atStarting_footer">
+      <button type="button" class="atStarting_logo_" (click)="disappear_atStarting()">Continue<span class="material-symbols-outlined">
+        arrow_right
+        </span></button>
+    </div>
+  </div>
+</div> -->

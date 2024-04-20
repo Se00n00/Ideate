@@ -16,26 +16,32 @@
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.397);
-  width: 200px;
-  border-radius: 25px;
+  width: 100px;
+  border-radius: 8px;
   margin: 10px;
+  box-sizing: border-box;
 }
 .change_buttons{
   /* margin:10px 10px 0px 10px; */
   height: 40px;
-  width: 100px;
+  width: 80px;
   padding: 7px;
-  border-radius: 35px;
+  margin: 5px;
+  border-radius: 8px;
   background-color: rgba(255, 255, 255, 0);
   border: 1px solid rgba(255, 255, 255, 0);
   box-shadow: none;
   /* box-shadow: -3px 3px 2px rgba(0, 0, 0, 0.493), inset -3px 3px 2px rgba(255, 255, 255, 0.082); */
 }
+.change_buttons:hover{
+  background-color: rgba(255, 255, 255, 0.151);
+}
 .active_button_class{
   height: 40px;
-  width: 100px;
+  width: 80px;
+  margin: 5px;
   padding: 7px;
-  border-radius: 35px;
+  border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.342);
   border: 1px solid rgba(255, 255, 255, 0.103);
 }
@@ -73,4 +79,82 @@ border: 2px solid rgba(255, 255, 255, 0.199);
 #CreateView:hover{
 background-color: rgba(255, 255, 255, 0.178);
 border: 2px solid rgba(255, 255, 255, 0.199);
+}
+
+.Ideate{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+
+
+
+
+
+
+/* Delete*/
+.others_whole{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top:0px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.atStarting{
+  width: 500px;
+  height: max-content;
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border: none;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  background-color: rgb(26, 25, 25);
+  /* z-index: 100; */
+}
+#atStarting_upper_image{
+  height: 310px;
+  width: 500px;
+}
+.atStarting_lower{
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color:rgba(94, 94, 94, 0.644);
+}
+.atStarting_footer{
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  justify-content: end;
+}
+.atStarting_logo_{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30px;
+  border-radius: 4px;
+  border: none;
+  box-sizing: border-box;
+  background-color: rgb(109, 108, 108);
+}
+.atStarting_logo_:hover{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30px;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  border:none;
+  background-color: rgb(136, 136, 136);
+}
+.atStarting_text{
+  color:rgb(212, 211, 211);
 }

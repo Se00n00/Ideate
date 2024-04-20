@@ -34,4 +34,8 @@ export class AppComponent {
   initiate_new(){
     
   }
+  hide_others:boolean=true;
+  disappear_atStarting(){
+    this.hide_others=false;
+  }
 }

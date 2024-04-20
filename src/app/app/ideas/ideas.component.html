@@ -1,6 +1,3 @@
-<div class="header">
-    
-</div>
 <div class="navbar">
     <div class="select_themes">
         <button type="button" class="select_themes_buttons"><img src="" alt=""></button>
@@ -13,9 +10,11 @@
 </div>
 
 <div class="Introduction" *ngIf="intro">
-    <div class="Introduction_canvas">
+    <!-- <canvas id="Introduction_canvas" #canava></canvas> -->
+    <div #canvas id="Introduction_canvas" ></div>
+    <!-- <div class="Introduction_canvas">
         <div class="Introduction_text">Start Capturing Your Ideas</div>
-    </div>
+    </div> -->
 </div>
 
 

@@ -26,7 +26,7 @@ export class CommentsComponent {
   }
 
   //comments as whole in databses
-  comments:{text:string, image:string | ArrayBuffer | null}[]=[{text:'This is a Sample Comment',image:'../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp'},{text:'This is a Sample Comment',image:'../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp'}];
+  comments:{text:string, image:string | ArrayBuffer | null}[]=[{text:'This is a Sample Comment',image:'../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp'}];
   crousel_comments:{text:string, image:string | ArrayBuffer | null}[]=[];
   // i:number=0;
   currentIndex:number=0;
@@ -38,16 +38,25 @@ export class CommentsComponent {
   create_comment_list:boolean=false;
   not_create_comment_list:boolean=true;
   show_create_list(){
-    this.create_comment_list=true;
-    this.not_create_comment_list=false;
-  }
-  dont_show_creation(){
+    if(this.create_comment_list===false){
+      this.comments_message='Hide Idea Points';
+      this.create_comment_list=true;
+    }else{
+      this.comments_message='Show Idea Points'
     this.create_comment_list=false;
     this.not_create_comment_list=true;
     this.image_source='';
     this.comment='';
+    }
+    
+    // this.not_create_comment_list=false;
   }
+  dont_show_creation(){
+    
+  }
+  comments_message:string='Show Idea Points'
   add_comments(){
+    
     this.comments.push({text:this.comment, image:this.image_source});
     this.create_comment_list=false;
     this.not_create_comment_list=true;

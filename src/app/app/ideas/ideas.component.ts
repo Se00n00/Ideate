@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2} from '@angular/core';
+import * as THREE from 'three';
 import { ViewComponent } from './view/view.component';
 import { CommonModule } from '@angular/common';
 import { db, IdeaList, Appdetail} from '../../dexie.service';
 import { liveQuery } from 'dexie';
+
 
 @Component({
   selector: 'app-ideas',
@@ -13,6 +15,7 @@ import { liveQuery } from 'dexie';
 })
 
 export class IdeasComponent extends ViewComponent{
+  
   // constructor(fileComponenet:FilesComponent){};
   //introduction part whenever user opens the app first time
 

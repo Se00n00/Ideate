@@ -22,14 +22,14 @@
   margin-right: 10px;
 }
 
-.Introduction_canvas{
+#Introduction_canvas{
   width: 100vw;
   height: 86vh;
   background-color: aquamarine;
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 .Introduction_text{
   font-size: 4em;
