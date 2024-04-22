@@ -16,7 +16,16 @@
     <div class="view_all">
         <div class="view_idea" *ngIf="changeMenu==='idea'">
             <div class="view_overviews">
+                <span (click)="Resize()" class="material-symbols-outlined" id="view_overviews_resize">
+                    resize
+                </span>
                 <img src="{{image_url}}" alt="" id="view_image">
+            </div>
+            <div class="view_overviews_resize" *ngIf="closedResize">
+                <img src="{{image_url}}" alt="" id="view_overviews_resize_view_image">
+                <span (click)="Resize()" class="material-symbols-outlined" id="view_overviews_resize_view_image_resize">
+                    resize
+                </span>
             </div>
             <div class="view_others">
     
@@ -43,11 +52,69 @@
                 
             </div>
         </div>
+
+
+        <!-- VIEW FILES -->
+
         <div class="view_files" *ngIf="changeMenu==='files'">
-            Hello
+            
+
+            <!-- collections -->
+            <div class="view_files_collections">
+                <div class="view_files_collections_header">
+                    <span id="view_files_collections_id">Collections</span>
+                    <span class="material-symbols-outlined" id="view_files_collections_add">add</span>
+                </div>
+                <div class="view_files_collections_items">
+                    <span class="view_files_collections_item">Collection 1</span>
+                </div>
+            </div>
+
+            <div class="view_files_collection_files">
+                <div class="view_files_collection_file">
+                    <div class="view_files_collection_file_template">
+                        <img src="../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp" alt="" id="view_files_collection_file_template_image">
+                        File 1
+                    </div>
+                    <input type="text" name="" id="view_files_collection_file_template_description">
+                    <div class="view_files_collection_file_icons">
+                        <span class="material-symbols-outlined">edit_note</span>
+                        <span class="material-symbols-outlined">delete_forever</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined" id="view_files_collection_file_add">add</span>
+            </div>
         </div>
+
+
+        <!-- EDIT ADD POINTS -->
+
         <div class="edit_comments" *ngIf="changeMenu==='points'">
-            HII
+            <span class="edit_comments_title">Add Points to your Idea</span>
+            <div class="edit_comments_main">
+                <div class="edit_comments_main_content">
+                    <textarea name="" id="edit_comments_main_textarea" cols="30" rows="10"></textarea>
+                    <span class="material-symbols-outlined" id="edit_comments_main_textarea_save">new_label</span>
+                    <div class="edit_comments_main_textarea_links">
+                        <span class="edit_comments_main_textarea_link" *ngFor="let links of commentLinkList">
+                            <span class="material-symbols-outlined" id="edit_comments_main_textarea_logo">link</span>
+                            <span class="edit_comments_main_textarea_link_text">{{links.linkTitle}}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="edit_comments_main_images">
+                    <img src="../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp" alt="" id="edit_comments_main_image">
+                    <input type="file" name="" id="edit_comments_main_input">
+                </div>
+            </div>
+            <span class="guide_edit_comments_add_links">
+                Enter Title and Url to add Refrences in your Idea Point
+            </span>
+            <div class="edit_comments_add_links">
+                <input type="text" class="edit_comments_add_links_title" placeholder="Enter the title" [(ngModel)]="linkTitle">
+                <input type="text" class="edit_comments_add_links_href" placeholder="Enter the link url" [(ngModel)]="linkHref">
+            </div>
+            <span class="material-symbols-outlined" id="edit_comments_add_links_icon" (click)="addLink()">add_link</span>
         </div>
 
 
@@ -107,25 +174,24 @@
                         </div>
                         <div class="ideaDetails_image">
                             <p class="mainContent_heading_title">Change Idea View Image</p>
-                            <img src="../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp" alt="" class="ideaDetails_image_show" >
-                            <!-- <div class="ideaDetails_image_show" ></div> -->
-                            <input type="file" name="" id="" accept="image/*" (change)="onImageSelected($event)">
+                            <div class="ideaDetails_image_edit">
+                                <img src="../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp" alt="" class="ideaDetails_image_show" >
+                                <!-- <div class="ideaDetails_image_show" ></div> -->
+                                <input type="file" name="" id="ideaDetails_image_edit_file" accept="image/*" (change)="onImageSelected($event)">
+                            </div>
+                            
                         </div>
-                        <div class="mainContent_save_cancel">
+                        <!-- <div class="mainContent_save_cancel">
                             <button type="button" (click)="onApply_ideaDetails()">Apply</button>
                             <button type="button" (click)="end_edit()">Cancel</button>
-                        </div>
+                        </div> -->
                     </div>
             
             
                     <!--Main Content : DataSecurity-->
                     <div class="editIdea_mainContent_databseSecurity" *ngIf="bool_databaseSecurity">
                         <p class="mainContent_heading">Manage Access of Data among Shared</p>
-                        <h2>Comming Soon</h2>
-                        <div class="mainContent_save_cancel">
-                            <button type="button">Apply</button>
-                            <button type="button" (click)="end_edit()">Cancel</button>
-                        </div>
+                        <h2>Coming Soon</h2>
                     </div>
             
             
@@ -135,22 +201,45 @@
                         <p class="mainContent_heading">Manage Associated Links</p>
                         <div class="External_links">
                             <p class="mainContent_heading_title">Add External releated Links</p>
-                            <div class="edit_links">
-                                <div class="link_image">
-                                    <img src="../../../../assets/icons/links.svg" alt="" id="link_image_img">
-                                    <input type="file" name="" id="link_image_file">
-                                </div>
-                                <div class="input_links">
-                                    <div class="input_links_text">
-                                        <input type="text" name="" id="input_links_text" placeholder="Enter Text to appear">
+                            <div class="above_edit_links">
+                                <div class="edit_links">
+                                    <div class="link_image">
+                                        <img src="../../../../assets/icons/links.svg" alt="" id="link_image_img">
+                                        <input type="file" name="" id="link_image_file">
                                     </div>
-                                    <div class="input_links_href">
-                                        <input type="text" name="" id="input_links_href" placeholder="Enter Link Realted to it">
+                                    <div class="input_links">
+                                        <div class="input_links_text">
+                                            <input type="text" name="" id="input_links_text" placeholder="Enter Text to appear">
+                                        </div>
+                                        <div class="input_links_href">
+                                            <input type="text" name="" id="input_links_href" placeholder="Enter Link Realted to it">
+                                        </div>
+                                        
                                     </div>
-                                    <button type="button" id="add_new_link">A</button>
                                 </div>
+                                <button type="button" id="add_new_link">
+                                    <span class="material-symbols-outlined">
+                                        add_link
+                                    </span>
+                                </button>
                                 
                             </div>
+                            <p class="inserted_links_heading">Manage Inserted Links</p>
+                            <div class="inserted_links">
+                                <div class="show_inserted_link">
+                                    <img src="../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp" alt="" id="show_inserted_links_image" width="40px" height="40px" style="border-radius: 5px;">
+                                    <div class="show_inserted_links">
+                                        <input type="text" name="" id="show_inserted_links_name">
+                                        <input type="text" name="" id="show_inserted_links_href">   
+                                    </div>
+                                    <button type="button" id="show_inserted_links_delete">
+                                        <span class="material-symbols-outlined" id="show_inserted_links_delete_icon">
+                                            delete
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            
                         </div>
 
 
@@ -169,10 +258,7 @@
                             </div>
                         </div> -->
 
-                        <div class="mainContent_save_cancel">
-                            <button type="button">Apply</button>
-                            <button type="button" (click)="end_edit()">Cancel</button>
-                        </div>
+                        
                     </div>
             
             

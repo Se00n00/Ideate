@@ -13,6 +13,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './comments.component.css'
 })
 export class CommentsComponent {
+
+
+
+
+  
   image_source: string | ArrayBuffer | null = null;
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -35,8 +40,16 @@ export class CommentsComponent {
   // }
   comment:string='';
   image_url:string='';
+
+
+  
+  // not_create_comment_list:boolean=true;
+
+
+
+  //Show / Hide Idea Points
   create_comment_list:boolean=false;
-  not_create_comment_list:boolean=true;
+  comments_message:string='Show Idea Points';
   show_create_list(){
     if(this.create_comment_list===false){
       this.comments_message='Hide Idea Points';
@@ -44,31 +57,38 @@ export class CommentsComponent {
     }else{
       this.comments_message='Show Idea Points'
     this.create_comment_list=false;
-    this.not_create_comment_list=true;
-    this.image_source='';
-    this.comment='';
     }
-    
-    // this.not_create_comment_list=false;
   }
-  dont_show_creation(){
-    
-  }
-  comments_message:string='Show Idea Points'
-  add_comments(){
-    
-    this.comments.push({text:this.comment, image:this.image_source});
-    this.create_comment_list=false;
-    this.not_create_comment_list=true;
-    this.image_source='';
-    this.comment='';
-  }
-  up_crousel(){
-    // this.currentIndex=(this.currentIndex===this.comments.length-1)? 0 :this.currentIndex+1;
 
-    // this.currentIndex = (this.currentIndex === this.comments.length - 1) ? 0 : this.currentIndex + 1;
+
+
+  //Idea Point Items Array
+  IdeaPoint:{text:string,imageUrl:string}[]=[{text:'This is a Sample Comment',imageUrl:'../../../../assets/flowers.jpg'},{text:'This is a Sajvksdnkvbsdvbbsdkb sdk bksbks mple Comment',imageUrl:'../../../../assets/idea_image.jpg'},{text:'This is a ml jns wii ih wefiwfSamp j oiro ioijojre oj eoj j erj ole Comment',imageUrl:'../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp'}];
+  IdeaPointLinks:{linkTitle:string,linkHref:string}[]=[{linkTitle:'googlehafisaf',linkHref:'www.google.com'},{linkTitle:'googledksnfkjd',linkHref:'www.google.com'},{linkTitle:'googlejfsdhidf',linkHref:'www.google.com'}];
+  IdeaPointInstance:any=this.IdeaPoint[0];
+  IdeaPointLinksInstance:any=this.IdeaPointLinks[0];
+
+
+  
+  //Adding Crousel to Comments
+  crouselIndex:number=0;
+  up_crousel(){
+    if(this.crouselIndex<this.IdeaPoint.length-1){
+      this.crouselIndex++;
+    }else{
+      this.crouselIndex=0;
+    }
+    this.IdeaPointInstance=this.IdeaPoint[this.crouselIndex];
+    this.IdeaPointLinksInstance=this.IdeaPointLinks[this.crouselIndex];
+    
   }
   down_crousel(){
-    // this.currentIndex = (this.currentIndex === 0) ? this.comments.length - 1 : this.currentIndex - 1;
+    if(this.crouselIndex>0){
+      this.crouselIndex--;
+    }else{
+      this.crouselIndex=this.IdeaPoint.length-1;
+    }
+    this.IdeaPointInstance=this.IdeaPoint[this.crouselIndex];
+    this.IdeaPointLinksInstance=this.IdeaPointLinks[this.crouselIndex];
   }
 }

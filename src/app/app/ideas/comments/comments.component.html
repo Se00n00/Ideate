@@ -2,32 +2,35 @@
     <div class="space_comment"></div>
 <div class="comment">
     <div class="comments" >
-        <button type="button" id="addpoint" (click)="show_create_list()">{{comments_message}} <span class="material-symbols-outlined">
-            comment
-            </span></button>
+        <button type="button" id="addpoint" (click)="show_create_list()">
+            {{comments_message}}
+            <span class="material-symbols-outlined">comment</span>
+        </button>
         
     </div>
     
     <div class="showed" *ngIf="create_comment_list">
         <!-- <div class="comments_crousel"> -->
-            <div class="showed_comments" *ngFor="let items of comments;">
-                <!-- *ngIf="currentIndex !== comments.indexOf(items)" -->
-                <div class="showed_comments_text_links">
-                    <p class="showed_comments_text" >{{items.text}}</p>
-                    <div class="showed_comments_links">
-                        <div class="showed_comments_link">
-                            <a href="google.com">
-                                <span class="material-symbols-outlined">
-                                    link
-                                </span>
-                                links
-                            </a>
-                        </div>
+            <div class="showed_comment_portion">
+                <div class="showed_comments" >
+                    <!-- *ngIf="currentIndex !== comments.indexOf(items)" -->
+                    <!-- <div class="showed_comments_text_links"> -->
+                    <p class="showed_comments_text">{{IdeaPointInstance.text}}</p>
+                    <img src="{{IdeaPointInstance.imageUrl}}" height="150px" class="showed_comments_image" >
+                </div>
+                <div class="showed_comments_links">
+                    <div class="showed_comments_link" >
+                        <a href="{{IdeaPointLinksInstance.linkHref}}">
+                            <span class="material-symbols-outlined">
+                                link
+                            </span>
+                            <span class="showed_comments_link_title">{{IdeaPointLinksInstance.linkTitle}} {{crouselIndex}}</span> 
+                        </a>
                     </div>
                 </div>
                 
-                <img src="{{items.image}}" height="150px" class="showed_comments_image" >
             </div>
+            
         <!-- </div> -->
         <div class="showed_buttons" >
             <button type="button" class="crousel_buttons_button" (click)="up_crousel()">
@@ -44,27 +47,3 @@
     </div>
 </div>
 </div>
-
-<!-- 
-*ngIf="create_comment_list"
-<div class="add_comments" >
-    <textarea cols="30" rows="10" id="textarea" placeholder="Add a new Point to your idea" [(ngModel)]="comment">
-        
-    </textarea>
-    <div class="comment_image_and_create_list">
-        <div class="input_image">
-            <button type="button" class="input_image_button">
-                <img [src]="image_source" id="input_image" >
-            </button>
-            
-        </div>
-        <div class="comments_buttons">
-            
-            <input type="file" accept="image/*" id="accept_image" (change)="onFileSelected($event)" >
-            <button type="button" (click)="add_comments()" class="add_comments_buttons"><span class="material-symbols-outlined">
-                add
-                </span></button>
-        </div>
-        
-    </div>
-</div> -->

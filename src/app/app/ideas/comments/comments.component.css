@@ -152,7 +152,8 @@
     /* margin-left: 2%; */
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: start;
 }
 /* .comments_crousel{
     display: flex;
@@ -163,8 +164,12 @@
     
     align-items:flex-start;
 } */
+.showed_comment_portion{
+    width: 94%;
+    /* box-sizing: border-box; */
+}
 .showed_comments{
-    min-width: 78.5vw;
+    width: 100%;
     margin: 0px;
     height: 170px;
     display: flex;
@@ -178,16 +183,17 @@
     /* width: 89vw; */
     /* min-width: 85vw; */
     overflow: hidden;
+    /* max-width: 50vw; */
 
 }
-.showed_comments_text_links{
+/* .showed_comments_text_links{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     flex-basis: 80%;
     height: 100%;
-}
+} */
 .showed_comments_text{
     align-self: flex-start;
     /* overflow: scroll;
@@ -195,7 +201,7 @@
     /* text-overflow: ellipsis; */
     word-wrap: break-word;
     overflow: auto;
-    flex-basis: 80%;
+    /* flex-basis: 100%; */
     padding: 5px;
     margin: 0;
     font-size: 18px;
@@ -211,27 +217,38 @@
     justify-content: flex-start;
     align-items: center;
     overflow: scroll;
-    height: 40px;
+    height: 60px;
+    width: 100%;
 }
 .showed_comments_link{
     width: max-content;
-    min-width: 60px;
+    /* min-width: 60px; */
     /* margin-left: 5px; */
     /* padding: 5px; */
     padding: 5px 10px;
     border-radius: 25px;
     height: 20px;
     display: flex;
+    margin-right: 10px;
+    /* color; */
     /* justify-content: space-between; */
     justify-content: center;
     /* align-items: center; */
-    background-color: white;
+    /* background-color: white; */
+    background-color: rgba(205, 205, 205, 0.5);
+    box-shadow: -7px 7px 5px rgba(0, 0, 0, 0.24),inset -7px 7px 5px rgba(255, 255, 255, 0.562);
 }
 a{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: fit-content;
+    color: white;
+    /* padding: 0px 10px; */
+    /* margin: 0px 10px; */
+}
+.showed_comments_link_title{
+    width: max-content;
 }
 .showed_comments_image{
     height: 148px;
@@ -269,7 +286,7 @@ a{
     /* margin-top: 10px; */
     text-align: center;
     border-radius: 0px;
-    height: 85px;
+    height: 115px;
     margin: 0px;
     padding: 0px;
     width: 100%;

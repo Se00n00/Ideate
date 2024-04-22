@@ -14,6 +14,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './view.component.css'
 })
 export class ViewComponent {
+  closedResize:boolean=false;
+  Resize(){
+    if(this.closedResize===true){
+      this.closedResize=false;
+    }else{
+      this.closedResize=true;
+    }
+  }
   new_ideaTitle:string='';
   new_description:string='';
   new_viewImageSrc: string | ArrayBuffer | null = null;
@@ -120,6 +128,21 @@ export class ViewComponent {
       this.changeMenu='points';
     }else{
       this.changeMenu='edit';
+    }
+  }
+
+
+  // EDIT : ADD POINTS WITH LINKS
+  commentLinkList:{linkTitle:string,linkHref:string}[]=[{linkTitle:'Backyard',linkHref:'www.backyard.com'}];
+  linkTitle:string='';
+  linkHref:string='';
+  addLink(){
+    if(this.linkHref===''||this.linkTitle===''){
+      alert('Please Fill the both Title and Link Input');
+    }else{
+      this.commentLinkList.push({linkTitle:this.linkTitle,linkHref:this.linkHref});
+      this.linkHref='';
+      this.linkTitle='';
     }
   }
 }
