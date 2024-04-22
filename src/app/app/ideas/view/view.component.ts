@@ -69,7 +69,7 @@ export class ViewComponent {
   // idealist$ = liveQuery(()=>this.)
   Description:string='Add Description about your Idea';
   Title:string='Idea Title'
-  Links:{name: string, href:string}[]=[]
+  Links:{name: string, href:string}[]=[{name:'Google', href:'Google.com'}]
 
   //image url
   image_url:string | ArrayBuffer | null ='../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp';
@@ -108,5 +108,18 @@ export class ViewComponent {
     this.Links=[];
     this.image_url=this.new_viewImageSrc;
     this.end_edit();
+  }
+
+  changeMenu:string='idea';
+  changeToMenu(str:string){
+    if(str==='idea'){
+      this.changeMenu='idea';
+    }else if(str==='files'){
+      this.changeMenu='files';
+    }else if(str==='points'){
+      this.changeMenu='points';
+    }else{
+      this.changeMenu='edit';
+    }
   }
 }

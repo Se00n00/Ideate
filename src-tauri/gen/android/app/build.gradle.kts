@@ -6,10 +6,10 @@ plugins {
 
 android {
     compileSdk = 33
-    namespace = "com.tauri.ideate"
+    namespace = "com.ideate"
     defaultConfig {
         manifestPlaceholders["usesCleartextTraffic"] = "false"
-        applicationId = "com.tauri.ideate"
+        applicationId = "com.ideate"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

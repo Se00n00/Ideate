@@ -1,43 +1,50 @@
-<div class="comments" >
-    <button type="button" id="addpoint" (click)="show_create_list()">{{comments_message}} <span class="material-symbols-outlined">
-        comment
-        </span></button>
+<div class="all_comments">
+    <div class="space_comment"></div>
+<div class="comment">
+    <div class="comments" >
+        <button type="button" id="addpoint" (click)="show_create_list()">{{comments_message}} <span class="material-symbols-outlined">
+            comment
+            </span></button>
+        
+    </div>
     
-</div>
-
-<div class="showed" *ngIf="create_comment_list">
-    <!-- <div class="comments_crousel"> -->
-        <div class="showed_comments" *ngFor="let items of comments;">
-            <!-- *ngIf="currentIndex !== comments.indexOf(items)" -->
-            <div class="showed_comments_text_links">
-                <p class="showed_comments_text" >{{items.text}}</p>
-                <div class="showed_comments_links">
-                    <div class="showed_comments_link"><a href="google.com">
-                        <span class="material-symbols-outlined">
-                            link
-                        </span>
-                        links
-                    </a>
+    <div class="showed" *ngIf="create_comment_list">
+        <!-- <div class="comments_crousel"> -->
+            <div class="showed_comments" *ngFor="let items of comments;">
+                <!-- *ngIf="currentIndex !== comments.indexOf(items)" -->
+                <div class="showed_comments_text_links">
+                    <p class="showed_comments_text" >{{items.text}}</p>
+                    <div class="showed_comments_links">
+                        <div class="showed_comments_link">
+                            <a href="google.com">
+                                <span class="material-symbols-outlined">
+                                    link
+                                </span>
+                                links
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                </div>
+                
+                <img src="{{items.image}}" height="150px" class="showed_comments_image" >
             </div>
-            
-            <img src="{{items.image}}" height="150px" class="showed_comments_image" >
+        <!-- </div> -->
+        <div class="showed_buttons" >
+            <button type="button" class="crousel_buttons_button" (click)="up_crousel()">
+                <span class="material-symbols-outlined">
+                    keyboard_arrow_up
+                </span>
+            </button>
+            <button type="button" class="crousel_buttons_button" (click)="down_crousel()">
+                <span class="material-symbols-outlined">
+                    keyboard_arrow_down
+                </span>
+            </button>
         </div>
-    <!-- </div> -->
-    <div class="showed_buttons" >
-        <button type="button" class="crousel_buttons_button" (click)="up_crousel()">
-            <span class="material-symbols-outlined">
-                keyboard_arrow_up
-            </span>
-        </button>
-        <button type="button" class="crousel_buttons_button" (click)="down_crousel()">
-            <span class="material-symbols-outlined">
-                keyboard_arrow_down
-            </span>
-        </button>
     </div>
 </div>
+</div>
+
 <!-- 
 *ngIf="create_comment_list"
 <div class="add_comments" >

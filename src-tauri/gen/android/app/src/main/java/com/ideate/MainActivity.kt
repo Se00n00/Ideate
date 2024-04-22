@@ -1,3 +1,3 @@
-package com.tauri.ideate
+package com.ideate
 
 class MainActivity : TauriActivity()
