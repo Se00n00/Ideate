@@ -9,11 +9,15 @@
     <button type="button" id="navbar_button"><img src="" alt=""></button>
 </div>
 
-<!-- <div class="Introduction" *ngIf="intro">
-    <div #canvas id="Introduction_canvas" ></div>
+<div class="Introduction" *ngIf="getIntroinfo()">
+    <div #canvas id="Introduction_canvas" >
+        Start Capturing Your Idea
+        <button type="button" id="introCreateIdea" (click)="createNewIdea()">Create Your First Idea</button>
+    </div>
+    
 </div>
- -->
 
-<div class="complete_list" *ngFor="let idea of IdeaList$ | async; trackby:identifyList">
+
+<div class="complete_list" *ngFor="let idea of IdeaList">
     <app-view></app-view>   
-</div>Introduction_text
+</div>

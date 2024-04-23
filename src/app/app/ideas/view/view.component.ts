@@ -6,6 +6,9 @@ import { IdeasComponent } from '../ideas.component';
 import { liveQuery } from 'dexie';
 import { db, IdeaList, Idea } from '../../../dexie.service';
 import { FormsModule } from '@angular/forms';
+import { __exportStar } from 'tslib';
+import { SharedService } from '../../../shared.service';
+
 @Component({
   selector: 'app-view',
   standalone: true,
@@ -22,19 +25,7 @@ export class ViewComponent {
       this.closedResize=true;
     }
   }
-  new_ideaTitle:string='';
-  new_description:string='';
-  new_viewImageSrc: string | ArrayBuffer | null = null;
-  onImageSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.new_viewImageSrc = reader.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
+  
 
 
   DatbaseName_first_Letter:string='L';
@@ -80,7 +71,7 @@ export class ViewComponent {
   Links:{name: string, href:string}[]=[{name:'Google', href:'Google.com'}]
 
   //image url
-  image_url:string | ArrayBuffer | null ='../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp';
+  image_url:string | ArrayBuffer | null ='';
 
 
 
@@ -96,6 +87,7 @@ export class ViewComponent {
       this.view='View Files';
     }
   }
+
   //add Files
   Files:{Name:string,File_in_database:string}[]=[{Name:'Sample File',File_in_database:''}];  //add image of file also
   newFiles:{Name:string,File_in_database:string}[]=[];
@@ -132,17 +124,107 @@ export class ViewComponent {
   }
 
 
+  constructor(private sharedService:SharedService){
+
+  }
   // EDIT : ADD POINTS WITH LINKS
-  commentLinkList:{linkTitle:string,linkHref:string}[]=[{linkTitle:'Backyard',linkHref:'www.backyard.com'}];
+
+  commentLinkList:{linkTitle:string,linkHref:string}[]=this.sharedService.commentLinkList
   linkTitle:string='';
   linkHref:string='';
   addLink(){
     if(this.linkHref===''||this.linkTitle===''){
       alert('Please Fill the both Title and Link Input');
     }else{
-      this.commentLinkList.push({linkTitle:this.linkTitle,linkHref:this.linkHref});
+      this.sharedService.addCommentLink({linkTitle:this.linkTitle,linkHref:this.linkHref})
+      // this.commentLinkList.push({linkTitle:this.linkTitle,linkHref:this.linkHref});
       this.linkHref='';
       this.linkTitle='';
     }
+  }
+  //                   => Point's Image
+  pointImage: string | ArrayBuffer | null = "../../../../assets/addImage.png";
+  getPointImage(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.pointImage = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  pointComment:string='';
+  PointComment:{text:string,imageUrl:string | ArrayBuffer | null}[]=[];
+  AddComment(){
+    if(this.pointComment==='' || this.pointImage===null){
+      alert('Please Add at least a word and Image');
+    }else{
+      this.sharedService.addPointComment({text:this.pointComment,imageUrl:this.pointImage});
+      // this.PointComment.push({text:this.pointComment,imageUrl:this.pointImage})
+      this.pointComment='';
+      this.pointImage=null;
+    }
+  }
+
+  //EDIT :IDEA HEADER
+  delete_idea(){
+    
+  }
+
+  // EDIT: IDEA - IDEA DETAILS
+  new_ideaTitle:string='Add a new Title of Your Idea';
+  new_description:string='Add a description to your Idea';
+  new_viewImageSrc: string | ArrayBuffer | null = '../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp';
+  onImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const currentId=this
+        this.new_viewImageSrc = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  addTitleToDb(newTitle:string){
+
+  }
+  addDescriptionToDb(newDescription:string){
+
+  }
+
+
+
+  // EDIT: IDEA -LINKS
+  linkImage: string | ArrayBuffer | null ="../../../../assets/icons/links.svg";
+  addLinkImage(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.linkImage = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  ideaLinkText:string='';
+  ideaLinkHref:string='';
+  addIdeaLinks(){
+    if(this.ideaLinkText==='' && this.ideaLinkText===''){
+      alert('Please Enter Both Link Title and Link Refrence');
+    }else{
+      this.sharedService
+    .addIdeaLinkList({linkImage:this.linkImage,linkText:this.ideaLinkText,linkHref:this.ideaLinkHref});
+    this.ideaLinkHref='';
+    this.ideaLinkText='';
+    this.linkImage="../../../../assets/icons/links.svg";
+    }
+  }
+  ShowIdeaLinkList:{linkImage:string | ArrayBuffer | null ,linkText:string,linkHref:string}[]=this.sharedService.IdeaLinkList;
+  deleteIdeaLink(linkImage:string | ArrayBuffer | null,linkHref:string,linkText:string){
+    this.sharedService.deleteIdeaLinkList({linkImage:this.linkImage,linkText:this.ideaLinkText,linkHref:this.ideaLinkHref});
+    this.ShowIdeaLinkList=this.sharedService.IdeaLinkList;
   }
 }

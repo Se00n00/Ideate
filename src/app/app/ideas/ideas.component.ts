@@ -4,7 +4,8 @@ import { ViewComponent } from './view/view.component';
 import { CommonModule } from '@angular/common';
 import { db, IdeaList, Appdetail} from '../../dexie.service';
 import { liveQuery } from 'dexie';
-
+import { SharedService } from '../../shared.service';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-ideas',
@@ -14,8 +15,11 @@ import { liveQuery } from 'dexie';
   styleUrl: './ideas.component.css'
 })
 
-export class IdeasComponent extends ViewComponent{
-  
+export class IdeasComponent{
+  constructor(private sharedService:SharedService,private appcomponent:AppComponent){
+    // super();
+  }
+  IdeaList:{id:Number,IdeaTitle:string,IdeaDescription:String,IdeaImage:String}[]=this.sharedService.Ideas;
   // constructor(fileComponenet:FilesComponent){};
   //introduction part whenever user opens the app first time
 
@@ -28,7 +32,13 @@ export class IdeasComponent extends ViewComponent{
   //   this.visible=true;
   // }
   // Ideas:any[]=[];
-  intro:boolean=true;
+  // intro:boolean=this.sharedService.into;
+  createNewIdea(){
+    this.appcomponent.initiate_new();
+  }
+  getIntroinfo(){
+    return this.sharedService.intro
+  }
   IdeaList$ =liveQuery(()=>db.IdeaList.toArray());
   // intro:boolean=(db.IdeaList.count===0)? true :false;
   // db.IdeaList.count().then((count) => {
@@ -37,24 +47,24 @@ export class IdeasComponent extends ViewComponent{
   //   console.error('Error getting IdeaList count:', error);
   //   // Handle the error as needed
   // });
-  IdeaTitle:string=this.Title;
-  IdeaDescription:string=this.Description;
+  // IdeaTitle:string=this.Title;
+  // IdeaDescription:string=this.Description;
 
   i:number =0;
-  links:{name: string, href:string}[]=this.Links;
-  async initiate_new(){
+  // links:{name: string, href:string}[]=this.Links;
+  // async initiate_new(){
 
-    await db.IdeaList.add({
-      id: this.i++,
-      title: this.IdeaTitle,
-      description: this.IdeaDescription,
-      links: this.links,
-    });
-    // async resetDatabase() {
-    //   await db.transaction('rw', 'IdeaList');
-    // }
-  }
-  identifyList(index: number, list:IdeaList){
-    return `${list.id}${list.title}`
-  }
+  //   await db.IdeaList.add({
+  //     id: this.i++,
+  //     title: this.IdeaTitle,
+  //     description: this.IdeaDescription,
+  //     links: this.links,
+  //   });
+  //   // async resetDatabase() {
+  //   //   await db.transaction('rw', 'IdeaList');
+  //   // }
+  // }
+  // identifyList(index: number, list:IdeaList){
+  //   return `${list.id}${list.title}`
+  // }
 }

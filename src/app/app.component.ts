@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { invoke } from "@tauri-apps/api/core";
 import { IdeasComponent } from './app/ideas/ideas.component';
 import { SchedulesComponent } from './app/schedules/schedules.component';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -31,8 +32,13 @@ export class AppComponent {
     this.ideate_buttons='change_buttons';
     this.scheduled_buttons='active_button_class';
   }
+  constructor(private sharedService:SharedService){
+
+  }
+  // id:Number=0;
+  EachIdea:{IdeaTitle:string,IdeaDescription:String,IdeaImage:String}={IdeaTitle:'Add a new Title of Your Idea',IdeaDescription:'Add a description to your Idea',IdeaImage:'../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp'}
   initiate_new(){
-    
+    this.sharedService.addIdeas(this.EachIdea)
   }
   hide_others:boolean=true;
   disappear_atStarting(){
