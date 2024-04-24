@@ -1,4 +1,4 @@
-.header{
+.app_header{
   background-color: rgba(68, 67, 67, 0.397);
   height: 80px;
   display: flex;
@@ -13,7 +13,7 @@
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.24);
 }
 
-.change{
+.app_header_changeViews{
   display: flex;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.397);
@@ -22,7 +22,7 @@
   margin: 10px;
   box-sizing: border-box;
 }
-.change_buttons{
+.app_header_changeViews_button_inactive{
   /* margin:10px 10px 0px 10px; */
   height: 40px;
   width: 80px;
@@ -34,10 +34,10 @@
   box-shadow: none;
   /* box-shadow: -3px 3px 2px rgba(0, 0, 0, 0.493), inset -3px 3px 2px rgba(255, 255, 255, 0.082); */
 }
-.change_buttons:hover{
+.app_header_changeViews_button_inactive:hover{
   background-color: rgba(255, 255, 255, 0.151);
 }
-.active_button_class{
+.app_header_changeViews_button_active{
   height: 40px;
   width: 80px;
   margin: 5px;
@@ -47,7 +47,7 @@
   border: 1px solid rgba(255, 255, 255, 0.103);
 }
 
-.filter_type{
+.app_header_filterTypes{
   display: flex;
   flex-direction: row;
   overflow: scroll;
@@ -55,12 +55,12 @@
   /* margin-top: 10px; */
   /* width: 50vw; */
 }
-.filter_type_buttons{
+.app_header_filterTypes_buttons{
   border-radius:25px;
   margin-right: 10px;
 }
 
-#CreateView{
+#app_header_createIdea_button{
   /* position: fixed; */
   /* position: absolute; */
   /* position: absolute;
@@ -70,25 +70,42 @@
   /* background-color: blue; */
   height: 40px;
   margin: 10px;
-width: 200px;
-padding: 7px;
-/* border: 1px solid rgb(177, 177, 177); */
-border-radius: 35px;
-background-color: rgba(255, 255, 255, 0);
-border: 2px solid rgba(255, 255, 255, 0.199);
+  width: 200px;
+  padding: 7px;
+  /* border: 1px solid rgb(177, 177, 177); */
+  border-radius: 35px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid rgba(255, 255, 255, 0.199);
 }
-#CreateView:hover{
-background-color: rgba(255, 255, 255, 0.178);
-border: 2px solid rgba(255, 255, 255, 0.199);
+#app_header_createIdea_button:hover{
+  background-color: rgba(255, 255, 255, 0.178);
+  border: 2px solid rgba(255, 255, 255, 0.199);
 }
 
-.Ideate{
+.app_view_Ideate{
   color: white;
   display: flex;
   /* align-items: center; */
   justify-content: center;
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

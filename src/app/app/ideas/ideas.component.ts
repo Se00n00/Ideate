@@ -33,13 +33,13 @@ export class IdeasComponent{
   // }
   // Ideas:any[]=[];
   // intro:boolean=this.sharedService.into;
-  createNewIdea(){
-    this.appcomponent.initiate_new();
+  ideas_createNewIdea(){
+    this.appcomponent.app_createIdea();
   }
-  getIntroinfo(){
+  ideas_getIntroInfo(){
     return this.sharedService.intro
   }
-  IdeaList$ =liveQuery(()=>db.IdeaList.toArray());
+  // IdeaList$ =liveQuery(()=>db.IdeaList.toArray());
   // intro:boolean=(db.IdeaList.count===0)? true :false;
   // db.IdeaList.count().then((count) => {
   //   intro = count === 0;
@@ -50,7 +50,7 @@ export class IdeasComponent{
   // IdeaTitle:string=this.Title;
   // IdeaDescription:string=this.Description;
 
-  i:number =0;
+  // i:number =0;
   // links:{name: string, href:string}[]=this.Links;
   // async initiate_new(){
 

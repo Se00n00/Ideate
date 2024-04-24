@@ -1,4 +1,4 @@
-.complete_list{
+.ideas_IdeaList{
     margin-top: 30px;
     /* margin: ; */
     display: flex;
@@ -9,23 +9,22 @@
 }
 
 
-.Introduction{
+.ideas_Introduction{
   color:black;
+  height: 84vh;
 }
 
-.navbar{
+.ideas_navbar{
   display: flex;
   flex-direction: row;
   justify-content: end;
   padding: 1%;
 }
-.select_themes_buttons{
+.ideas_selectThemes_buttons{
   margin-right: 10px;
 }
-.Introduction{
-  height: 84vh;
-}
-#Introduction_canvas{
+
+#ideas_IntroductionCanvas{
   width: 100vw;
   height: 100%;
   font-size: 70px;
@@ -39,7 +38,7 @@
   justify-content: center;
   /* margin-bottom: 10px; */
 }
-#introCreateIdea{
+#ideas_IntroductionCanvas_CreateIdeaButton{
   margin-top: 60px;
   /* align-self:self-; */
   font-size: 20px;
@@ -53,7 +52,5 @@
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.24),inset 10px 10px 4px rgba(160, 160, 160, 0.062);
 }
-.Introduction_text{
-  font-size: 4em;
-}
+
 

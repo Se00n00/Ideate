@@ -227,4 +227,10 @@ export class ViewComponent {
     this.sharedService.deleteIdeaLinkList({linkImage:this.linkImage,linkText:this.ideaLinkText,linkHref:this.ideaLinkHref});
     this.ShowIdeaLinkList=this.sharedService.IdeaLinkList;
   }
+
+
+  //EDIT: FILES
+  deleteCollection(){
+    const conf=confirm("DELETE ?");
+  }
 }

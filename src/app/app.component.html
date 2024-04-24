@@ -1,32 +1,32 @@
-<div class="header">
-  <span class="change">
-    <button type="button" [class]="ideate_buttons" id="change_buttons1" (click)="Ideate()">
+<div class="app_header">
+  <span class="app_header_changeViews">
+    <button type="button" [class]="app_header_ideatebutton" (click)="app_showIdeate()">
       <span class="material-symbols-outlined">
         lightbulb
       </span>
     </button>
-    <button type="button" [class]="scheduled_buttons" id="change_buttons2" (click)="Scheduled()">
+    <button type="button" [class]="app_header_scheduledbutton" (click)="app_showScheduled()">
       <span class="material-symbols-outlined">
         wysiwyg
       </span>
     </button>
   </span>
-  <div class="filter_type">
-    <!-- <button type="button" class="filter_type_buttons">Environment</button>
-    <button type="button" class="filter_type_buttons">Environment</button>
-    <button type="button" class="filter_type_buttons">Environment</button>
-    <button type="button" class="filter_type_buttons">Environment</button>
-    <button type="button" class="filter_type_buttons">Environment</button>
-    <button type="button" class="filter_type_buttons">Environment</button> -->
+  <div class="app_header_filterTypes">
+    <!-- <button type="button" class="app_header_filterTypes_buttons">Environment</button>
+    <button type="button" class="app_header_filterTypes_buttons">Environment</button>
+    <button type="button" class="app_header_filterTypes_buttons">Environment</button>
+    <button type="button" class="app_header_filterTypes_buttons">Environment</button>
+    <button type="button" class="app_header_filterTypes_buttons">Environment</button>
+    <button type="button" class="app_header_filterTypes_buttons">Environment</button> -->
   </div>
-  <div class="create_list">
-    <button type="button" (click)="initiate_new()" id="CreateView">Initate a new Idea</button>
+  <div class="app_header_createIdea">
+    <button type="button" (click)="app_createIdea()" id="app_header_createIdea_button">Initate a new Idea</button>
   </div>
 </div>
 
-<div class="view">
-  <div class="Ideate" *ngIf="Ideas"><app-ideas></app-ideas></div>
-  <div class="Ideate" *ngIf="Schedule"><app-schedules></app-schedules></div>
+<div class="app_view">
+  <div class="app_view_Ideate" *ngIf="Ideas"><app-ideas></app-ideas></div>
+  <div class="app_view_Ideate" *ngIf="Schedule"><app-schedules></app-schedules></div>
 </div>
 
 

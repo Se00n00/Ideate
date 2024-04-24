@@ -1,23 +1,23 @@
-<div class="navbar">
-    <div class="select_themes">
-        <button type="button" class="select_themes_buttons"><img src="" alt=""></button>
-        <button type="button" class="select_themes_buttons"><img src="" alt=""></button>
-        <button type="button" class="select_themes_buttons"><img src="" alt=""></button>
-        <button type="button" class="select_themes_buttons"><img src="" alt=""></button>
-        <button type="button" class="select_themes_buttons"><img src="" alt=""></button>
+<div class="ideas_navbar">
+    <div class="ideas_selectThemes">
+        <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
+        <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
+        <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
+        <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
+        <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
     </div>
-    <button type="button" id="navbar_button"><img src="" alt=""></button>
+    <button type="button" id="ideas_navbar_button"><img src="" alt=""></button>
 </div>
 
-<div class="Introduction" *ngIf="getIntroinfo()">
-    <div #canvas id="Introduction_canvas" >
+<div class="ideas_Introduction" *ngIf="ideas_getIntroInfo()">
+    <div #canvas id="ideas_IntroductionCanvas" >
         Start Capturing Your Idea
-        <button type="button" id="introCreateIdea" (click)="createNewIdea()">Create Your First Idea</button>
+        <button type="button" id="ideas_IntroductionCanvas_CreateIdeaButton" (click)="ideas_createNewIdea()">Create Your First Idea</button>
     </div>
     
 </div>
 
 
-<div class="complete_list" *ngFor="let idea of IdeaList">
+<div class="ideas_IdeaList" *ngFor="let idea of IdeaList">
     <app-view></app-view>   
 </div>
