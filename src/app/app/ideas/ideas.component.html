@@ -1,12 +1,12 @@
 <div class="ideas_navbar">
-    <div class="ideas_selectThemes">
+    <div class="ideas_selectThemes" *ngIf="Select_Themes">
         <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
         <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
+        <!-- <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
         <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
-        <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
-        <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button>
+        <button type="button" class="ideas_selectThemes_buttons"><img src="" alt=""></button> -->
     </div>
-    <button type="button" id="ideas_navbar_button"><img src="" alt=""></button>
+    <button type="button" id="ideas_navbar_button" (click)="selectThemes()"></button>
 </div>
 
 <div class="ideas_Introduction" *ngIf="ideas_getIntroInfo()">

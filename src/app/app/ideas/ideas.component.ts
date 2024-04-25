@@ -67,4 +67,19 @@ export class IdeasComponent{
   // identifyList(index: number, list:IdeaList){
   //   return `${list.id}${list.title}`
   // }
+
+
+  //Select Themes
+  Select_Themes:boolean=false;
+  selectThemes(){
+    if(this.Select_Themes===true){
+      this.Select_Themes=false;
+    }else{
+      this.Select_Themes=true;
+    }
+  }
+  //     Themes variable
+  Themes=this.sharedService.Themes[0];
+  Themesimages=this.Themes.images;
+  ideaBackground=this.Themesimages.center;
 }

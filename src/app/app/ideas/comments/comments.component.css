@@ -1,7 +1,7 @@
-.all_comments{
+.comments_all{
     display: flex;
 }
-.space_comment{
+.comments_all_SpaceComment{
     border: 1px solid rgba(255, 255, 255, 0);
     /* margin: 1%; */
     /* padding: 1%; */
@@ -19,7 +19,7 @@
     background-color: rgba(205, 205, 205, 0);
 }
 
-.comments,.add_comments,.showed_comments,.showed_buttons{
+.comments_all_comment_comments,.add_comments,.showed_comments,.showed_buttons{
     border: 1px solid rgba(255, 255, 255, 0.281);
     /* margin: 1%; */
     /* padding: 1%; */
@@ -35,7 +35,7 @@
     background-color: rgba(205, 205, 205, 0.5);
     box-shadow: -7px 7px 5px rgba(0, 0, 0, 0.24),inset -7px 7px 10px rgba(255, 255, 255, 0.25);
 }
-.comments{
+.comments_all_comment_comments{
     margin-bottom: 10px;
 }
 #addpoint{

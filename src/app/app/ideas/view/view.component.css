@@ -29,8 +29,10 @@
     height: 50px;
     width: 50px;
     opacity: 1;
+    cursor: pointer;
 }
 .inactive_icon{
+    cursor: pointer;
     height: 50px;
     width: 50px;
     opacity: 0.5;

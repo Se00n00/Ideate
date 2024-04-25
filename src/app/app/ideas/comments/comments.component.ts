@@ -65,7 +65,7 @@ export class CommentsComponent {
       this.create_comment_list=true;
     }else{
       this.comments_message='Show Idea Points'
-    this.create_comment_list=false;
+      this.create_comment_list=false;
     }
   }
 
@@ -80,7 +80,27 @@ export class CommentsComponent {
   IdeaPointLinksInstance:any=this.IdeaPointLinks[0];
 
 
+  //show / hide comment text & Image when empty
   
+  checkCommentText(){
+    if(this.IdeaPointInstance.text===''&&this.IdeaPointInstance.imageUrl===''){
+      return false;
+    }else{
+      return true;
+    }
+  }
+  checkCommentLink(){
+    if(this.checkCommentText()){
+      if(this.IdeaPointLinksInstance.linkTitle===''){
+        return false;
+      }else{
+        return true;
+      }
+    }else{
+      return false;
+    }
+  }
+
   //Adding Crousel to Comments
   crouselIndex:number=0;
   up_crousel(){

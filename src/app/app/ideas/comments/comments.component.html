@@ -1,7 +1,7 @@
-<div class="all_comments">
-    <div class="space_comment"></div>
-<div class="comment">
-    <div class="comments" >
+<div class="comments_all">
+    <div class="comments_all_SpaceComment"></div>
+<div class="comments_all_comment">
+    <div class="comments_all_comment_comments" >
         <button type="button" id="addpoint" (click)="show_create_list()">
             {{comments_message}}
             <span class="material-symbols-outlined">comment</span>
@@ -11,20 +11,20 @@
     
     <div class="showed" *ngIf="create_comment_list">
         <!-- <div class="comments_crousel"> -->
-            <div class="showed_comment_portion">
-                <div class="showed_comments" >
+            <div class="showed_comment_portion" >
+                <div class="showed_comments" *ngIf="checkCommentText()">
                     <!-- *ngIf="currentIndex !== comments.indexOf(items)" -->
                     <!-- <div class="showed_comments_text_links"> -->
-                    <p class="showed_comments_text">{{IdeaPointInstance.text}}</p>
-                    <img src="{{IdeaPointInstance.imageUrl}}" height="150px" class="showed_comments_image" >
+                    <p class="showed_comments_text" >{{IdeaPointInstance.text}}</p>
+                    <img src="{{IdeaPointInstance.imageUrl}}" height="150px" class="showed_comments_image">
                 </div>
                 <div class="showed_comments_links">
-                    <div class="showed_comments_link" >
+                    <div class="showed_comments_link" *ngIf="checkCommentLink()">
                         <a href="{{IdeaPointLinksInstance.linkHref}}">
                             <span class="material-symbols-outlined">
                                 link
                             </span>
-                            <span class="showed_comments_link_title">{{IdeaPointLinksInstance.linkTitle}} {{crouselIndex}}</span> 
+                            <span class="showed_comments_link_title">{{IdeaPointLinksInstance.linkTitle}}</span> 
                         </a>
                     </div>
                 </div>

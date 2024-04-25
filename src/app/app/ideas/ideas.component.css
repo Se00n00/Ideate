@@ -6,6 +6,7 @@
     justify-content: center;
     margin-bottom: 100px;
     /* width: 100vw; */
+    /* background-color: {{backgroun}}; */
 }
 
 
@@ -22,8 +23,38 @@
 }
 .ideas_selectThemes_buttons{
   margin-right: 10px;
+  animation: trans 0.2s ease-in;
+}
+@keyframes trans {
+  0%{
+    transform: translate(0px);
+  }100%{
+    transform: translate(-10px);
+  }
+}
+#ideas_navbar_button{
+  position: relative;
+  height: 40px;
+  outline: none;
 }
 
+#ideas_navbar_button:hover::before{
+  position: absolute;
+  contain: content;
+  content: "Select Themes";
+  background-color: rgba(71, 71, 71, 0.459);
+  color: rgb(49, 49, 49);
+  border-radius: 6px;
+  width: 150px;
+  height: 40px;
+  right:0px;
+  top: 50px;
+  box-shadow: 2px 2px 2px grey;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #ideas_IntroductionCanvas{
   width: 100vw;
   height: 100%;

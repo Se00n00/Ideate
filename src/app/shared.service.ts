@@ -82,4 +82,17 @@ export class SharedService {
     }
   }
   // IdeasLinks:{id:number,}
+
+
+
+
+
+
+  // Themes Variable
+  Theme1:any={images:{start:'../assets/Themes/1st.webp',end:'../assets/Themes/last.webp',center:'../assets/Themes/middle.webp',color1:'pink',color2:'red'},model:{start:'',end:'',center:''}};
+  Themes:{images:{start:String|ArrayBuffer|null,end:String|ArrayBuffer|null,center:String|ArrayBuffer|null,color1:String|ArrayBuffer|null,color2:String|ArrayBuffer|null},model:{start:String|ArrayBuffer|null,end:String|ArrayBuffer|null,center:String|ArrayBuffer|null}}[]=[this.Theme1];
+
+
+  //Files Variable
+  FileCollection:{Collection:{Cid:number,CFiles:{FTitle:String,FDescription:String}[]}}[]=[];
 }
