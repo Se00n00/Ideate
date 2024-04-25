@@ -63,19 +63,22 @@
             <div class="view_files_collections">
                 <div class="view_files_collections_header">
                     <span id="view_files_collections_id">Collections</span>
-                    <span class="material-symbols-outlined" id="view_files_collections_add">add</span>
+                    <span class="material-symbols-outlined" id="view_files_collections_add" (click)="addCollection()">add</span>
                 </div>
                 <div class="view_files_collections_items">
-                    <span class="view_files_collections_item"><span class="material-symbols-outlined" id="view_files_collections_items_icon" (click)="deleteCollection()">delete_forever</span>Collection 1</span>
-                    
+                    <span class="view_files_collections_item" *ngFor="let Collection of Collections" (click)="changeCollectionIndex(Collection.Collection.Cid)">
+                        <span class="material-symbols-outlined" id="view_files_collections_items_icon1" (click)="deleteCollection(Collection.Collection.Cid)">delete_forever</span>
+                        <span class="material-symbols-outlined" id="view_files_collections_items_icon2" (click)="renameCollection(Collection.Collection.Cid)">edit</span>
+                        {{Collection.CName}} {{Collection.Collection.Cid}}
+                    </span>
                 </div>
             </div>
-
             <div class="view_files_collection_files">
-                <div class="view_files_collection_file">
+                *ngFor="let Files of FileInstance"
+                <div class="view_files_collection_file" >
                     <div class="view_files_collection_file_template">
                         <img src="../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp" alt="" id="view_files_collection_file_template_image">
-                        File 1
+                        <!-- {{Files.Findex}} -->
                     </div>
                     <input type="text" name="" id="view_files_collection_file_template_description">
                     <div class="view_files_collection_file_icons">

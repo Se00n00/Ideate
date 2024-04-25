@@ -229,8 +229,38 @@ export class ViewComponent {
   }
 
 
-  //EDIT: FILES
-  deleteCollection(){
+  //EDIT: FILES :Collection
+  Collections=this.sharedService.FileCollection;
+  CId:number=0;
+  CName:String='Collection';
+  CollectionInstance:any;
+  newName:any;
+  addCollection(){
+    this.CId=this.CId+1;
+    this.CollectionInstance={CName:this.CName,Collection:{Cid:this.CId,CFiles:{}}}
+    this.sharedService.addFileCollection(this.CollectionInstance);
+  }
+  deleteCollection(Cid:number){
     const conf=confirm("DELETE ?");
+    if(conf===true){
+      this.sharedService.deleteFileCollection(Cid);
+    }
+  }
+  renameCollection(Cid:number){
+    this.newName=prompt('Enter New Name');
+    if(this.newName!=''){
+      this.sharedService.renameFileCollection(Cid,this.newName);
+      this.newName='';
+    }else{
+      alert('Please Enter some character');
+    }
+  }
+
+  // EDIT: FILES: Files
+  collectionIndex:any;
+  
+  changeCollectionIndex(Cid:Number){
+    this.collectionIndex=Cid;
+    
   }
 }

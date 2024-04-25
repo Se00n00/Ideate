@@ -377,6 +377,7 @@
 }
 #view_files_collections_add{
     /* border: 1px solid black; */
+    cursor: pointer;
     border-radius: 50%;
     height: 35px;
     width: 35px;
@@ -397,9 +398,10 @@
     padding: 0px 10px;
 }
 .view_files_collections_item{
+    padding-left: 10px;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
     background-color: rgb(124, 124, 124);
@@ -408,10 +410,26 @@
     border-radius: 7px;
     box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.774);
 }
-#view_files_collections_items_icon{
+.view_files_collections_item:hover::after{
+    
+}
+#view_files_collections_items_icon1,#view_files_collections_items_icon2{
     position: absolute;
-    right:5px;
+    right:0px;
     cursor: pointer;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+#view_files_collections_items_icon1:hover,#view_files_collections_items_icon2:hover{
+    background-color: rgba(255, 255, 255, 0.205);
+    border-radius: 4px;
+}
+#view_files_collections_items_icon2{
+    right:40px;
 }
 .view_files_collection_files{
     border: 1px solid rgba(0, 0, 0, 0.288);
