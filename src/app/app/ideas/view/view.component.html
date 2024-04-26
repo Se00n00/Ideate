@@ -66,27 +66,44 @@
                     <span class="material-symbols-outlined" id="view_files_collections_add" (click)="addCollection()">add</span>
                 </div>
                 <div class="view_files_collections_items">
-                    <span class="view_files_collections_item" *ngFor="let Collection of Collections" (click)="changeCollectionIndex(Collection.Collection.Cid)">
-                        <span class="material-symbols-outlined" id="view_files_collections_items_icon1" (click)="deleteCollection(Collection.Collection.Cid)">delete_forever</span>
-                        <span class="material-symbols-outlined" id="view_files_collections_items_icon2" (click)="renameCollection(Collection.Collection.Cid)">edit</span>
-                        {{Collection.CName}} {{Collection.Collection.Cid}}
+                    <span class="view_files_collections_item" *ngFor="let Collection of Collections" (click)="changeCollectionIndex(Collection.Cid)">
+                        <span class="material-symbols-outlined" id="view_files_collections_items_icon1" (click)="deleteCollection(Collection.Cid)">delete_forever</span>
+                        <span class="material-symbols-outlined" id="view_files_collections_items_icon2" (click)="renameCollection(Collection.Cid)">edit</span>
+                        {{Collection.CName}} {{Collection.Cid}}
                     </span>
                 </div>
             </div>
-            <div class="view_files_collection_files">
-                *ngFor="let Files of FileInstance"
-                <div class="view_files_collection_file" >
-                    <div class="view_files_collection_file_template">
+            <div class="view_files_collection_files"  >
+                <div class="view_files_collection_file" *ngFor="let Files of FileInstance">
+                    <div class="view_files_collection_file_template" *ngIf="Files.Cid===collectionIndex">
                         <img src="../../../../assets/beautiful-nature-mountain-scenery-with-flowers-free-photo.webp" alt="" id="view_files_collection_file_template_image">
-                        <!-- {{Files.Findex}} -->
+                       
+                        {{Files.FTitle}}
                     </div>
-                    <input type="text" name="" id="view_files_collection_file_template_description">
-                    <div class="view_files_collection_file_icons">
+                    <input type="text" name="" id="view_files_collection_file_template_description" value="{{Files.FDescription}}" *ngIf="Files.Cid===collectionIndex">
+                    <div class="view_files_collection_file_icons" *ngIf="Files.Cid===collectionIndex">
                         <span class="material-symbols-outlined">edit_note</span>
                         <span class="material-symbols-outlined">delete_forever</span>
                     </div>
                 </div>
-                <span class="material-symbols-outlined" id="view_files_collection_file_add">add</span>
+                {{anyValue}}
+                <img src="{{anyValue}}" alt="" srcset="">
+                <span class="material-symbols-outlined" id="view_files_collection_file_add" (click)="addNewFile()" *ngIf="collectionIndex!=0">add</span>
+                <div class="addFile_window" *ngIf="addFiles"  (mouseleave)="dontaddnewFiles()">
+                    <div class="addFile_window_header" (click)="addFileArray()">
+                        <!-- (change)="addaNewFile($event)" -->
+                        <input type="file" name="" id="addFile_window_header_file" hidden >
+                        
+                        <span class="material-symbols-outlined" id="addFile_window_header_icon">
+                            cloud_download
+                        </span>
+                        <span class="addFile_window_header_text">Add Files</span>
+                    </div>
+                    <div class="addFile_window_addedFiles">
+                        <span class="addFile_window_addedFile">File name</span>
+                    </div>
+                    <span id="addFile_window_Done">Done</span>
+                </div>
             </div>
         </div>
 

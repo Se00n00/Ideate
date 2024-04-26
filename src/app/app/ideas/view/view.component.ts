@@ -8,6 +8,8 @@ import { db, IdeaList, Idea } from '../../../dexie.service';
 import { FormsModule } from '@angular/forms';
 import { __exportStar } from 'tslib';
 import { SharedService } from '../../../shared.service';
+import { invoke } from '@tauri-apps/api/core';
+
 
 @Component({
   selector: 'app-view',
@@ -237,7 +239,7 @@ export class ViewComponent {
   newName:any;
   addCollection(){
     this.CId=this.CId+1;
-    this.CollectionInstance={CName:this.CName,Collection:{Cid:this.CId,CFiles:{}}}
+    this.CollectionInstance={CName:this.CName,Cid:this.CId}
     this.sharedService.addFileCollection(this.CollectionInstance);
   }
   deleteCollection(Cid:number){
@@ -257,10 +259,60 @@ export class ViewComponent {
   }
 
   // EDIT: FILES: Files
-  collectionIndex:any;
-  
+  collectionIndex:any=0;
+  FileInstance=this.sharedService.File;
   changeCollectionIndex(Cid:Number){
     this.collectionIndex=Cid;
     
   }
+  FName:String='';
+  FDescription:String='';
+  addNewFile(){
+    this.addFiles=true;
+    this.sharedService.addFiles(this.collectionIndex,'NewFile','Description');
+  }
+  addFiles:boolean=false;
+  dontaddnewFiles(){
+    this.addFiles=false;
+  }
+  inputedFile:string|ArrayBuffer|null='';
+
+  FileDatabase:{name:String;content:string,Description:String}[]=[];
+  async addFileArray(){
+    const fileInput=document.getElementById('addFile_window_header_file');
+    fileInput?.click();
+    // await invoke('greet',{name:'mohit'}).then((m)=>console.log(m));
+    await invoke('open');
+    // invoke('my_custom_command').then((message) => console.log(message))
+  }
+  // anyValue:any;
+  anyValue: string | ArrayBuffer | null = null;
+  strss:string="ABS.pptx";
+
+  addaNewFile(event:any){
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.anyValue=reader.result;
+        invoke('open',{P:this.strss})
+        // this.ProccessFile(this.anyValue);
+        this.anyValue=null;
+      };
+      console.log(reader.readAsDataURL(file));
+    }
+  }
+  // async ProccessFile(fileUrl:string | ArrayBuffer | null){
+  //   if(fileUrl){
+  //     try{
+  //       await invoke('open_file',{fileUrl:fileUrl.toString()});
+  //     }catch(e){
+  //       console.error('Error invoking open_file:', e);
+  //     }
+  //   }
+  //   // console.log(fileUrl);
+    
+
+  // }
+
 }

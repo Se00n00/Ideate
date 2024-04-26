@@ -92,24 +92,30 @@ export class SharedService {
   Themes:{images:{start:String|ArrayBuffer|null,end:String|ArrayBuffer|null,center:String|ArrayBuffer|null,color1:String|ArrayBuffer|null,color2:String|ArrayBuffer|null},model:{start:String|ArrayBuffer|null,end:String|ArrayBuffer|null,center:String|ArrayBuffer|null}}[]=[this.Theme1];
 
 
-  //Files Variable
-  FileCollection:{CName:String,Collection:{Cid:number,CFiles:{FTitle:String,FDescription:String}[]}}[]=[];
-  File:{Cid:number,FTitle:String,FDescription:String}[]=[];
+  //Collection Variable
+  FileCollection:{CName:String,Cid:number}[]=[];
   deleteFileCollection(Cid:number){
-    const index = this.FileCollection.findIndex((collection) => collection.Collection.Cid === Cid);
+    const index = this.FileCollection.findIndex((collection) => collection.Cid === Cid);
     if (index !== -1) {
       this.FileCollection.splice(index, 1);
     } else {
       console.error(`Collection with ID ${Cid} not found.`);
     }
   }
-  addFileCollection(Collect:{CName:String,Collection:{Cid:number,CFiles:{FTitle:String,FDescription:String}[]}}){
+  addFileCollection(Collect:{CName:String,Cid:number}){
     this.FileCollection.push(Collect);
   }
   renameFileCollection(Cid:number,CName:String){
-    const index=this.FileCollection.findIndex((collection)=>collection.Collection.Cid=Cid);
+    const index=this.FileCollection.findIndex((collection)=>collection.Cid===Cid);
     if(index!==-1){
       this.FileCollection[index].CName=CName;
     }
   }
+
+  //Files Variable
+  File:{Cid:number,FTitle:String,FDescription:String}[]=[];
+  addFiles(Cid:number,FTitle:String,FDescription:String){
+    this.File.push({Cid,FTitle,FDescription});
+  }
+  
 }
