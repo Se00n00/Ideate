@@ -113,9 +113,20 @@ export class SharedService {
   }
 
   //Files Variable
-  File:{Cid:number,FTitle:String,FDescription:String}[]=[];
-  addFiles(Cid:number,FTitle:String,FDescription:String){
-    this.File.push({Cid,FTitle,FDescription});
-  }
+  // File:{Cid:number,FTitle:String,FDescription:String}[]=[];
+  // addFiles(Cid:number,FTitle:String,FDescription:String){
+  //   this.File.push({Cid,FTitle,FDescription});
+  // }
+  FileDatabase:FileInfo[]=[];
   
+}
+interface FileInfo{
+  Fid:number;
+  Cid:number;
+  name:string;
+  type:string;
+  size:number;
+  description:string;
+  modified:number;
+  blob:Blob;
 }

@@ -371,6 +371,7 @@
     /* background-color: blue; */
 }
 .view_files_collections_header{
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -388,6 +389,24 @@
     color: black;
     box-shadow: 2px 2px 5px black;
 }
+#view_files_collections_add:hover::before{
+    position: absolute;
+    contain: content;
+    content: "Add Collection";
+    font-style: normal;
+    font-size: small;
+    text-transform: capitalize;
+    font-family: 'Courier New', Courier, monospace;
+    right: 45px;
+    color: white;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.205);
+    box-shadow: -3px 3px 4px rgb(97, 96, 96);
+    height: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
 .view_files_collections_items{
     margin: 10px;
     display: flex;
@@ -396,6 +415,12 @@
     overflow: scroll;
     height: 430px;
     padding: 0px 10px;
+}
+.view_files_collections_items_blank{
+    color: grey;
+    font-size: 40px;
+    font-weight: 500;
+    margin-top: 45%;
 }
 .view_files_collections_item{
     padding-left: 10px;
@@ -409,8 +434,16 @@
     border: 1px solid rgb(94, 94, 94);
     border-radius: 7px;
     box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.774);
+    cursor: pointer;
+}
+.view_files_collections_item:hover #view_files_collections_items_icon1{
+    display: flex;
+}
+.view_files_collections_item:hover #view_files_collections_items_icon2{
+    display: flex;
 }
 #view_files_collections_items_icon1,#view_files_collections_items_icon2{
+    
     position: absolute;
     right:0px;
     cursor: pointer;
@@ -420,6 +453,7 @@
     justify-content: center;
     align-items: center;
     margin: 0;
+    display: none;
 }
 #view_files_collections_items_icon1:hover,#view_files_collections_items_icon2:hover{
     background-color: rgba(255, 255, 255, 0.205);
@@ -440,11 +474,34 @@
     margin-left: 10px;
     position: relative;
 }
+.view_files_collection_files_search{
+    display: flex;
+    align-items: center;
+    /* width: ; */
+    min-width: 200px;
+    /* width: fit-content; */
+    margin-bottom: 10px;
+    position: relative;
+    justify-content: stretch;
+}
+#view_files_collection_files_search_icon{
+    position: absolute;
+    left:10px;
+    color: rgba(255, 255, 255, 0.397);
+}
+.view_files_collection_files_search_input{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 40px;
+    padding-top: 12px;
+}
 .view_files_collection_file{
     display: flex;
     flex-direction: row;
     position: relative;
     margin-bottom: 10px;
+    /* width: 100%; */
 }
 .view_files_collection_file_template{
     height: 40px;

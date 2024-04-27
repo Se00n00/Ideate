@@ -5,8 +5,8 @@
 // }
 
 #[tauri::command]
-fn open(P: &str){
-    let file_path= P;
+fn open(path: &str){
+    let file_path= path;
     if let Err(e) = open_file(file_path) {
         eprintln!("Error opening file: {}", e);
     }

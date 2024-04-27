@@ -1,4 +1,4 @@
-import { Component, Input , ElementRef, ViewChild, input, Output} from '@angular/core';
+import { Component, Input , ElementRef, ViewChild, input, Output, PipeTransform} from '@angular/core';
 import { CommentsComponent } from '../comments/comments.component';
 import { FilesComponent } from '../files/files.component';
 import { CommonModule } from '@angular/common';
@@ -9,16 +9,17 @@ import { FormsModule } from '@angular/forms';
 import { __exportStar } from 'tslib';
 import { SharedService } from '../../../shared.service';
 import { invoke } from '@tauri-apps/api/core';
+import { FilterArrayPipe } from '../../../filter-array.pipe';
 
 
 @Component({
   selector: 'app-view',
   standalone: true,
-  imports: [CommentsComponent, FilesComponent, CommonModule, FormsModule],
+  imports: [FilterArrayPipe, CommentsComponent, FilesComponent, CommonModule, FormsModule],
   templateUrl: './view.component.html',
   styleUrl: './view.component.css'
 })
-export class ViewComponent {
+export class ViewComponent{
   closedResize:boolean=false;
   Resize(){
     if(this.closedResize===true){
@@ -232,6 +233,10 @@ export class ViewComponent {
 
 
   //EDIT: FILES :Collection
+  onCollectionBlur:boolean=false;
+
+
+
   Collections=this.sharedService.FileCollection;
   CId:number=0;
   CName:String='Collection';
@@ -250,17 +255,27 @@ export class ViewComponent {
   }
   renameCollection(Cid:number){
     this.newName=prompt('Enter New Name');
-    if(this.newName!=''){
+    if(this.newName===null|| this.newName===""){
+      alert("Action was canceled");
+    }else{
       this.sharedService.renameFileCollection(Cid,this.newName);
       this.newName='';
-    }else{
-      alert('Please Enter some character');
     }
+    // if(this.newName!=''){
+      
+    // }else if(this.newName===false){
+      
+    // }
+    // else{
+    //   alert('Please Enter some character');
+    // }
   }
 
   // EDIT: FILES: Files
+  searchInput:string='';
+  
   collectionIndex:any=0;
-  FileInstance=this.sharedService.File;
+  FileInstance=this.sharedService.FileDatabase;
   changeCollectionIndex(Cid:Number){
     this.collectionIndex=Cid;
     
@@ -269,50 +284,52 @@ export class ViewComponent {
   FDescription:String='';
   addNewFile(){
     this.addFiles=true;
-    this.sharedService.addFiles(this.collectionIndex,'NewFile','Description');
+    // this.sharedService.addFiles(this.collectionIndex,'NewFile','Description');
   }
   addFiles:boolean=false;
   dontaddnewFiles(){
     this.addFiles=false;
   }
   inputedFile:string|ArrayBuffer|null='';
-
-  FileDatabase:{name:String;content:string,Description:String}[]=[];
   async addFileArray(){
     const fileInput=document.getElementById('addFile_window_header_file');
     fileInput?.click();
     // await invoke('greet',{name:'mohit'}).then((m)=>console.log(m));
-    await invoke('open');
+    // await invoke('open');
     // invoke('my_custom_command').then((message) => console.log(message))
   }
   // anyValue:any;
-  anyValue: string | ArrayBuffer | null = null;
-  strss:string="ABS.pptx";
-
-  addaNewFile(event:any){
+  fid:number=0;
+  addFile(event:any){
+    this.fid=this.fid++;
     const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.anyValue=reader.result;
-        invoke('open',{P:this.strss})
-        // this.ProccessFile(this.anyValue);
-        this.anyValue=null;
-      };
-      console.log(reader.readAsDataURL(file));
-    }
+    const blob:Blob=new Blob([file],{type:file.type})
+        this.sharedService.FileDatabase.push({
+          Fid:this.fid
+          ,Cid:this.collectionIndex
+          ,name:file.name
+          ,type:file.type
+          ,size:file.size
+          ,description:''
+          ,modified:file.lastModified
+          ,blob:blob});
   }
-  // async ProccessFile(fileUrl:string | ArrayBuffer | null){
-  //   if(fileUrl){
-  //     try{
-  //       await invoke('open_file',{fileUrl:fileUrl.toString()});
-  //     }catch(e){
-  //       console.error('Error invoking open_file:', e);
-  //     }
-  //   }
-  //   // console.log(fileUrl);
-    
+  
+  //open file
+  async openFile(blob:Blob,filename:string){
+    const path=this.blobToFile(blob,filename);
+    await invoke('open',{path:path});
+  }
 
-  // }
 
+
+  // :Blob => File path
+  async blobToFile(blob: Blob, fileName: string): Promise<string> {
+    const buffer = await blob.arrayBuffer();
+    const filePath = await invoke<string>('plugin:file|save_buffer', {
+      buffer: new Uint8Array(buffer),
+      fileName,
+    });
+    return filePath;
+  }
 }
